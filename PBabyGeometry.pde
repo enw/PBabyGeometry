@@ -1,3 +1,6 @@
+int WIDTH = 1024 ;
+int HEIGHT = 768;
+
 int cx, cy;
 color[] colors = new color[4];
 float ringSize=80;
@@ -36,7 +39,7 @@ void centeredRect(float x,float y,float w,float h) {
 }
 
 void setup() {
-  size(800,600);
+  size(WIDTH,HEIGHT);
   
   println("BWRings");
   println("use + and - to increase & decrease size of rings");
@@ -60,7 +63,7 @@ void updateRingSize() {
 
 void draw() {
   if (!active) return;
-  background(256);
+  background(255);
   if (twitchy) randomizeColors();
 
   updateRingSize();
