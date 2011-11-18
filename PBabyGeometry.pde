@@ -53,6 +53,7 @@ void updateRingSize() {
 
 void draw() {
   if (!active) return;
+  background(256);
   if (twitchy) randomizeColors();
 
   updateRingSize();
