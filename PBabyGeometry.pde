@@ -6,15 +6,22 @@ boolean doSave = false;
 int direction = 1;
 boolean active=true;
 boolean twitchy=false;
+boolean isBW=true;
 
 void randomizeColors() {
     // random colors
     for (int i=0;i<4;i++) {
-      colors[i] = color(random(256),random(256),random(256));
+      if (isBW) {
+        float newGrey = random(256);
+        colors[i] = color(newGrey, newGrey, newGrey);
+       } else {
+        colors[i] = color(random(256),random(256),random(256));
+      }
     }
 }
 
 void blackAndWhiteColors() {
+  isBW=true;
   colors[0]=#000000;
   colors[1]=#ffffFF;
   colors[2]=#000000;
@@ -100,6 +107,7 @@ void keyPressed() {
   } else if (key==98) { // b
     blackAndWhiteColors();
   } else if (key==82) { //R
+    isBW=false;
     randomizeColors();
   } else if (key==120) { //x
     doSave=true;
