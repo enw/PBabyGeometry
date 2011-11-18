@@ -14,6 +14,13 @@ void randomizeColors() {
     }
 }
 
+void blackAndWhiteColors() {
+  colors[0]=#000000;
+  colors[1]=#ffffFF;
+  colors[2]=#000000;
+  colors[3]=#ffffFF;
+}
+
 void centeredRect(float x,float y,float w,float h) {
   x = x - w/2;
   y = y - h/2;
@@ -30,16 +37,14 @@ void setup() {
   println("use c to draw centered squares");
   println("use r to draw rings");
   println("use R to randomize colors");
+  println("use b to toggle black & white");
   println("use x to save picture");
   println("use t to toggle twitchyness");
   
   cx=width/2;
   cy=height/2;
   
-  colors[0]=#000000;
-  colors[1]=#ffffFF;
-  colors[2]=#0000FF;
-  colors[3]=#ffffFF;
+  blackAndWhiteColors();
 }
 void updateRingSize() {
   ringSize+=1.1*direction;
@@ -91,6 +96,8 @@ void keyPressed() {
     type="CENTERED_SQUARES";    
   } else if (key==32) { // space
     active = ! active;
+  } else if (key==98) { // b
+    blackAndWhiteColors();
   } else if (key==82) { //R
     randomizeColors();
   } else if (key==120) { //x
