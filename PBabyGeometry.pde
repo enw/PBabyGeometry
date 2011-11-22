@@ -58,7 +58,7 @@ void setup() {
 }
 void updateRingSize() {
   ringSize+=1.1*direction;
-  if (ringSize < 3 || ringSize > 200) direction *= -1;
+  if (ringSize < 64 || ringSize > 200) direction *= -1;
 }
 
 void draw() {
