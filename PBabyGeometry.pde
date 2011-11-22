@@ -1,5 +1,5 @@
-int WIDTH = 1680;
-int HEIGHT = 1050;
+int WIDTH = 1024;
+int HEIGHT = 1024;
 
 int cx, cy;
 color[] colors = new color[4];
