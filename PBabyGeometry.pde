@@ -4,7 +4,7 @@ int HEIGHT = 1024;
 int cx, cy;
 color[] colors = new color[4];
 float ringSize=80;
-String type = "RINGS";
+String type = "SPIRAL";
 boolean doSave = false;
 int direction = 1;
 boolean active=true;
@@ -43,6 +43,7 @@ void setup() {
   
   println("BWRings");
   println("use + and - to increase & decrease size of rings");
+  println("use S to draw a spiral");
   println("use s to draw squares");
   println("use c to draw centered squares");
   println("use r to draw rings");
@@ -61,9 +62,24 @@ void updateRingSize() {
   if (ringSize < 64 || ringSize > 200) direction *= -1;
 }
 
+int num = 64;
+int m=8;
+int csize = 16;
+
 void draw() {
   if (!active) return;
   background(255);
+
+  // spiral
+  if (type.equals("SPIRAL")) {
+    for (int i=0;i<num;i++) {
+      fill(256-i*4);
+      ellipse(cx + cos(i*frameCount/1000) * i * m,cy + sin(i*frameCount/1000) * i * m,csize,csize);
+    }
+    return;
+  }
+
+  // not spiral
   if (twitchy) randomizeColors();
 
   updateRingSize();
@@ -105,6 +121,8 @@ void keyPressed() {
     type="RINGS";
   } else if (key==99) { //c
     type="CENTERED_SQUARES";    
+  } else if (key==83) { //S
+    type="SPIRAL";    
   } else if (key==32) { // space
     active = ! active;
   } else if (key==98) { // b
