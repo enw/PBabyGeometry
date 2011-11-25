@@ -114,6 +114,8 @@ void keyPressed() {
     randomizeColors();
   } else if (key==120) { //x
     doSave=true;
+  } else {
+    println("unhandled keycode:"+key);
   }
 //println(ringSize);
 }
