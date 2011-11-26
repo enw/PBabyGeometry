@@ -70,14 +70,17 @@ void draw() {
   if (!active) return;
   background(255);
 
+
+  float oldx, oldy, newx, newy;
   // spiral
   if (type.equals("SPIRAL")) {
     for (int i=0;i<num;i++) {
       fill(256-i*4);
-      ellipse(cx + cos(i*frameCount/1000) * i * m,cy + sin(i*frameCount/1000) * i * m,csize,csize);
+      newx = cx + cos(i*frameCount/1000) * i * m;
+      newy = cy + sin(i*frameCount/1000) * i * m;
+      ellipse(newx, newy,csize,csize);
     }
-    return;
-  }
+  } else {
 
   // not spiral
   if (twitchy) randomizeColors();
@@ -100,7 +103,7 @@ void draw() {
     size-=ringSize;
     if (size < ringSize) done = true;
   }
-  
+  }
   if (doSave) {
     saveFrame("BW-####.png");
     doSave=false;
