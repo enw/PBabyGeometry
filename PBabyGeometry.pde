@@ -71,14 +71,22 @@ void draw() {
   background(255);
 
 
-  float oldx, oldy, newx, newy;
+  float oldx = cx;
+  float oldy = cy;
+  float newx, newy;
   // spiral
-  if (type.equals("SPIRAL")) {
+  if (type.equals("SPIRAL") || type.equals("SPIRAL_LINE")) {
     for (int i=0;i<num;i++) {
       fill(256-i*4);
       newx = cx + cos(i*frameCount/1000) * i * m;
       newy = cy + sin(i*frameCount/1000) * i * m;
-      ellipse(newx, newy,csize,csize);
+      if (type.equals("SPIRAL")) {
+        ellipse(newx, newy,csize,csize);
+      } else if (type.equals("SPIRAL_LINE")) {
+        line(oldx, oldy, newx, newy);
+        oldx = newx;
+        oldy = newy;
+      }
     }
   } else {
 
@@ -126,6 +134,8 @@ void keyPressed() {
     type="CENTERED_SQUARES";    
   } else if (key==83) { //S
     type="SPIRAL";    
+  } else if (key==108) { //l
+    type="SPIRAL_LINE";    
   } else if (key==32) { // space
     active = ! active;
   } else if (key==98) { // b
